@@ -1,1 +1,1 @@
-web: ./build/install/cabin-reservation/bin/app
+web: ./build/install/app/bin/app
