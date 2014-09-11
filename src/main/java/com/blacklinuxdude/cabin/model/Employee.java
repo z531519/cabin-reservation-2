@@ -1,12 +1,11 @@
 package com.blacklinuxdude.cabin.model;
 
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * Created by kdeleon on 9/10/14.
- */
+@Entity
 public class Employee {
 
     @Id

@@ -1,9 +1,12 @@
 package com.blacklinuxdude.cabin.model;
 
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Asset {
+
     @Id
     private String id;
 
