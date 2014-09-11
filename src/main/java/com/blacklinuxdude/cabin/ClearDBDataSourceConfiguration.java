@@ -17,26 +17,6 @@ import java.net.URISyntaxException;
 
 @Configuration
 public class ClearDBDataSourceConfiguration extends AbstractDataSourceConfiguration {
-    @Conditional(ClearDBDataSourceConfiguration.ClearDBDatabaseCondition.class)
-    @ConditionalOnMissingBean(DataSource.class)
-    @Import(ClearDBDataSourceConfiguration.class)
-    protected static class TomcatConfiguration {
-
-    }
-
-    static class ClearDBDatabaseCondition extends SpringBootCondition {
-
-        @Override
-        public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
-            String url = System.getenv("CLEARDB_DATABASE_URL");
-            if (url != null) {
-                if (url.contains("heroku")) {
-                    return ConditionOutcome.match("ClearDB MySQL from Heroku loaded");
-                }
-            }
-            return ConditionOutcome.noMatch("Non-Clear DB");
-        }
-    }
 
     private String jdbcInterceptors;
     private long validationInterval = 30000;
