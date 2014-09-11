@@ -16,3 +16,5 @@ activemq-data/*
 /bin
 /build
 /bin/*
+/node_modules/*
+/src/main/webapp/static/*
