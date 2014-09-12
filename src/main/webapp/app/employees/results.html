@@ -1,0 +1,12 @@
+<div>
+    <h1>THIS IS EMPLOYEE LIST</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="e in employees._embedded.employees">
+                <td>{{e.name}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

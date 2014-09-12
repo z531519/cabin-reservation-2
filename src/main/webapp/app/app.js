@@ -8,7 +8,17 @@ angular.module('cabinReservation.assetsModule', [
         'cabinReservation.assetsModule.assetService'
     ]);
 
-angular.module('cabinReservation',['ui.router', 'cabinReservation.assetsModule'])
+angular.module('cabinReservation.employeeModule', [
+    'ngResource', 'hateoas',
+    'cabinReservation.employeeModule.controllers',
+    'cabinReservation.employeeModule.services'
+]);
+
+angular.module('cabinReservation',
+    [   'ui.router',
+        'cabinReservation.assetsModule',
+        'cabinReservation.employeeModule'
+    ])
     .config(function (HateoasInterceptorProvider) {
         HateoasInterceptorProvider.transformAllResponses();
     })
@@ -24,13 +34,24 @@ angular.module('cabinReservation',['ui.router', 'cabinReservation.assetsModule']
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('viewassets', {
+            .state('assets', {
 
-                url: '/viewassets',
+                url: '/assets',
                 views: {
                     'results': {
                         templateUrl: '/app/assets/results.html',
                         controller: 'assetListController'
+                    }
+
+                }
+            })
+            .state('employees', {
+
+                url: '/employees',
+                views: {
+                    'results': {
+                        templateUrl: '/app/employees/results.html',
+                        controller: 'employeeListController'
                     }
 
                 }

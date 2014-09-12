@@ -33,8 +33,8 @@
     <div class="container">
         <p>
         <ul class="nav nav-pills">
-            <li class="active"><a href="#viewassets">Assets</a></li>
-            <li><a href="#">Employees</a></li>
+            <li><a href="#assets">Assets</a></li>
+            <li><a href="#employees">Employees</a></li>
 
         </ul>
 
@@ -48,6 +48,9 @@
     <script src="<%=request.getContextPath()%>/app/app.js"></script>
     <script src="<%=request.getContextPath()%>/app/assets/asset-list-controller.js"></script>
     <script src="<%=request.getContextPath()%>/app/assets/asset-service.js"></script>
+
+    <script src="<%=request.getContextPath()%>/app/employees/services.js"></script>
+    <script src="<%=request.getContextPath()%>/app/employees/controllers.js"></script>
 
 </body>
 
