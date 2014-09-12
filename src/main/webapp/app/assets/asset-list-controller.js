@@ -1,13 +1,8 @@
-/**
- * Created with IntelliJ IDEA.
- * User: vdeleke
- * Date: 9/11/14
- * Time: 3:23 PM
- * To change this template use File | Settings | File Templates.
- */
-angular.module('cabinReservation.assetsModule.assetListController', [])
-    .controller('assetListController', ['$scope', 'data',
-        function ($scope, data) {
+
+angular.module('cabinReservation.assetsModule.assetListController', ['cabinReservation.assetsModule.assetService'])
+    .controller('assetListController', ['$scope', 'assetService',
+        function ($scope, assetService) {
             'use strict';
+            $scope.assets = assetService.list.get();
         }
     ]);

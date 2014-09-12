@@ -1,3 +1,12 @@
 <div>
-    <h1>THIS IS ASSETS</h1>
+    <h1>THIS IS ASSETS LIST</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="asset in assets._embedded.assets">
+                <td>{{asset.name}}</td>
+            </tr>
+        </tbody>
+
+    </table>
 </div>
