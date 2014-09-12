@@ -2,8 +2,8 @@ package com.blacklinuxdude.cabin.fixtures;
 
 import com.blacklinuxdude.cabin.model.Asset;
 import com.blacklinuxdude.cabin.model.Employee;
-import com.blacklinuxdude.cabin.service.AssetRepository
-import com.blacklinuxdude.cabin.service.EmployeeRepository;
+import com.blacklinuxdude.cabin.repository.AssetRepository
+import com.blacklinuxdude.cabin.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

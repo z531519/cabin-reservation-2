@@ -6,7 +6,8 @@
 <html lang="en" ng-app="cabinReservation">
 <head>
     <!-- bower:css -->
-    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
 
     <!-- bower:js -->
@@ -16,6 +17,8 @@
     <script src="/static/angular-resource/angular-resource.js"></script>
     <script src="/static/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/static/angular-hateoas/src/angular-hateoas.js"></script>
+    <script src="/static/moment/moment.js"></script>
+    <script src="/static/fullcalendar/dist/fullcalendar.js"></script>
     <script src="/static/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
 </head>
@@ -43,15 +46,26 @@
 
         <div data-ui-view="results"></div>
 
+        <div class="row">
+            <div id="calendar" class="col-md-6"></div>
+        </div>
+
     </div>
 
     <script src="<%=request.getContextPath()%>/app/app.js"></script>
-    <script src="<%=request.getContextPath()%>/app/assets/asset-list-controller.js"></script>
-    <script src="<%=request.getContextPath()%>/app/assets/asset-service.js"></script>
+    <script src="<%=request.getContextPath()%>/app/assets/controllers.js"></script>
+    <script src="<%=request.getContextPath()%>/app/assets/services.js"></script>
 
     <script src="<%=request.getContextPath()%>/app/employees/services.js"></script>
     <script src="<%=request.getContextPath()%>/app/employees/controllers.js"></script>
 
+    <script>
+        $(function() {
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+            })
+        });
+    </script>
 </body>
 
 </html>

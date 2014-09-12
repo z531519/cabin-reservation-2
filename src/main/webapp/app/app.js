@@ -4,8 +4,8 @@
 
 angular.module('cabinReservation.assetsModule', [
         'ngResource', 'hateoas',
-        'cabinReservation.assetsModule.assetListController',
-        'cabinReservation.assetsModule.assetService'
+        'cabinReservation.assetsModule.controllers',
+        'cabinReservation.assetsModule.services'
     ]);
 
 angular.module('cabinReservation.employeeModule', [

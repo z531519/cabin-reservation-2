@@ -47,6 +47,8 @@ dependencies {
     compile("org.springframework:spring-context-support")
     compile("log4j:log4j")
 
+    compile('joda-time:joda-time:2.4')
+
 //    compile("org.springframework.data:spring-data-mongodb")
 
 //    compile("org.mongodb:mongo-java-driver:2.7.2")

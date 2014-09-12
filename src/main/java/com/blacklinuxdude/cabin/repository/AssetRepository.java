@@ -1,4 +1,4 @@
-package com.blacklinuxdude.cabin.service;
+package com.blacklinuxdude.cabin.repository;
 
 import com.blacklinuxdude.cabin.model.Asset;
 import org.springframework.data.repository.CrudRepository;

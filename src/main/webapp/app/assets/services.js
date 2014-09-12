@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('cabinReservation.assetsModule.assetService', ['ngResource'])
+angular.module('cabinReservation.assetsModule.services', ['ngResource'])
     .factory('assetService',
         [
             '$resource',

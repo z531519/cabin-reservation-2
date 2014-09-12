@@ -1,5 +1,5 @@
 
-angular.module('cabinReservation.assetsModule.assetListController', ['cabinReservation.assetsModule.assetService'])
+angular.module('cabinReservation.assetsModule.controllers', ['cabinReservation.assetsModule.services'])
     .controller('assetListController', ['$scope', 'assetService',
         function ($scope, assetService) {
             'use strict';
