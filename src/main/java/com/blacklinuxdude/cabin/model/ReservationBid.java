@@ -8,10 +8,7 @@ package com.blacklinuxdude.cabin.model;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -25,10 +22,12 @@ public class ReservationBid {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
+    @ManyToOne
     private Asset asset;
+
     @Column(nullable = false)
-    private int order;
+    private int priority;
     @Column(nullable = false)
     private Date checkinDate;
 
@@ -54,12 +53,12 @@ public class ReservationBid {
         this.asset = asset;
     }
 
-    public int getOrder() {
-        return order;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public Date getCheckinDate() {
