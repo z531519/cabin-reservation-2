@@ -1,4 +1,4 @@
-<div>
+<div data-ui-view>
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -26,9 +26,11 @@
                     <td>{{e.name}}</td>
                     <td>{{e.hired | date : 'yyyy-MM-dd'}}</td>
                     <td>
-                        <button class="col-md-offset-6 btn btn-sm btn-primary"
+                        <button class="btn btn-sm btn-primary"
                                 ng-click="editEmployee(e)">Edit
                         </button>
+                        <a href="#/employees/{{e.id}}/reservations" class="btn btn-sm btn-primary">Reservations</a>
+                        <a ui-sref="employees.reservations" class="btn btn-sm btn-primary">Reservations</a>
                     </td>
                 </tr>
                 </tbody>
@@ -37,5 +39,5 @@
         </div>
     </div>
 
-
 </div>
+

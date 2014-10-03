@@ -1,12 +1,21 @@
 <div>
-    <h1>THIS IS ASSETS LIST</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row panel-title">
+                <div class="col-md-2">Assets</div>
 
-    <table class="table table-striped">
-        <tbody>
-            <tr ng-repeat="asset in assets._embedded.assets">
-                <td>{{asset.name}}</td>
-            </tr>
-        </tbody>
+            </div>
 
-    </table>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <tbody>
+                    <tr ng-repeat="asset in assets">
+                        <td>{{asset.name}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
 </div>

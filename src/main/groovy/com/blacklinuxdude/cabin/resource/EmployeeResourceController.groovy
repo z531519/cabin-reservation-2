@@ -1,7 +1,9 @@
 package com.blacklinuxdude.cabin.resource
 
 import com.blacklinuxdude.cabin.model.Employee
+import com.blacklinuxdude.cabin.model.Reservation
 import com.blacklinuxdude.cabin.repository.EmployeeRepository
+import com.blacklinuxdude.cabin.repository.ReservationRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
@@ -20,6 +22,9 @@ class EmployeeResourceController {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    ReservationRepository reservationRepository;
+
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
     public List<Employee> getEmployees() {
@@ -27,18 +32,27 @@ class EmployeeResourceController {
     }
 
     @ResponseBody
-    @RequestMapping( value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Employee updateEmployee(@PathVariable('id') String id, @RequestBody Employee employee) {
         employeeRepository.save(employee);
         return employee;
     }
 
     @ResponseBody
-    @RequestMapping( method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public Employee updateEmployee(@RequestBody Employee employee) {
         employeeRepository.save(employee);
         return employee;
     }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/{id}/reservations", method = RequestMethod.GET)
+    public Iterable<Reservation> getEmployeeReservations(@PathVariable('id') String id) {
+        def employee = employeeRepository.findOne(id)
+        return reservationRepository.findByEmployee(employee)
+    }
+
 
 
 }

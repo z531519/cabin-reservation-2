@@ -1,0 +1,30 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Employee ID: {{employee.id}}</h3>
+</div>
+<div class="modal-body">
+    <input type="text" class="form-control" ng-model="employee.id" ng-if="isNewEmployee"/>
+    <input type="text" class="form-control" ng-model="employee.name"/>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+                <input type="text" class="form-control"
+                       ng-model="hireDate" is-open="opened" datepicker-popup="yyyy-MM-dd"
+                       datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+
+<div>
+
+
+
+</div>

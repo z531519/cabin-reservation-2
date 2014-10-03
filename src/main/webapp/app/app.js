@@ -9,23 +9,42 @@ angular.module('cabinReservation.assetsModule', [
     ]);
 
 angular.module('cabinReservation.employeeModule', [
-    'ngResource', 'hateoas',
+    'ngResource',
     'cabinReservation.employeeModule.controllers',
     'cabinReservation.employeeModule.services'
+]);
+
+angular.module('cabinReservation.reservationModule', [
+    'ngResource',
+    'cabinReservation.reservationModule.controllers'
 ]);
 
 angular.module('cabinReservation',
     [   'ui.router', 'ui.bootstrap',
         'cabinReservation.assetsModule',
-        'cabinReservation.employeeModule'
+        'cabinReservation.employeeModule',
+        'cabinReservation.reservationModule'
     ])
-    .config(function (HateoasInterceptorProvider) {
-        HateoasInterceptorProvider.transformAllResponses();
-    })
+    .run(
+    [          '$rootScope', '$state', '$stateParams',
+        function ($rootScope,   $state,   $stateParams) {
+
+            // It's very handy to add references to $state and $stateParams to the $rootScope
+            // so that you can access them from any scope within your applications.For example,
+            // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
+            // to active whenever 'contacts.list' or one of its decendents is active.
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+        }
+    ]
+)
+//    .config(function (HateoasInterceptorProvider) {
+//        HateoasInterceptorProvider.transformAllResponses();
+//    })
     .config(['$provide', '$httpProvider', '$urlRouterProvider', '$stateProvider',
 
         function ($provide, $httpProvider, $urlRouterProvider, $stateProvider) {
-        "use strict";
+//        "use strict";
 //        $provide.constant('contextPath', 'MinervaPreviewHub');
         $provide.constant('pollingInterval', 1000);
 //        $httpProvider.interceptors.push('httpInterceptorService');
@@ -35,27 +54,26 @@ angular.module('cabinReservation',
 
         $stateProvider
             .state('assets', {
-
                 url: '/assets',
-                views: {
-                    'results': {
-                        templateUrl: '/app/assets/results.html',
-                        controller: 'assetListController'
-                    }
-
-                }
+                templateUrl: 'app/assets/results.html',
+                controller: 'assetListController'
             })
             .state('employees', {
-
                 url: '/employees',
-                views: {
-                    'results': {
-                        templateUrl: '/app/employees/results.html',
-                        controller: 'employeeListController'
+                templateUrl: 'app/employees/results.html',
+                controller: 'employeeListController'
+            })
+            .state('employees.reservations', {
+                url: '/reservations',
+                views : {
+                    '' : {
+                        templateUrl: 'app/reservations/results.html',
+                        controller: 'reservationController'
                     }
-
                 }
-            });
+
+            })
+            ;
         }
         ]);
 

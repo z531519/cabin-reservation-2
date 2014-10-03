@@ -1,10 +1,14 @@
 
 angular.module('cabinReservation.employeeModule.controllers',
     ['cabinReservation.employeeModule.services'])
-    .controller('employeeListController', ['$scope', '$modal', 'employeeService',
-        function ($scope, $modal, employeeService) {
+    .controller('employeeListController', ['$scope', '$state', '$stateParams', '$modal', 'employeeService',
+        function ($scope, $state, $stateParams, $modal, employeeService) {
             'use strict';
             $scope.employees = employeeService.list.query();
+
+            $scope.gotoReservation = function() {
+                $state.go('employees.reservations');
+            }
 
             $scope.editEmployee = function (employee) {
                 var modalInstance = $modal.open( {

@@ -2,10 +2,13 @@ package com.blacklinuxdude.cabin.fixtures;
 
 import com.blacklinuxdude.cabin.model.Asset;
 import com.blacklinuxdude.cabin.model.Employee
+import com.blacklinuxdude.cabin.model.Reservation
 import com.blacklinuxdude.cabin.model.ReservationBid
 import com.blacklinuxdude.cabin.model.Season;
 import com.blacklinuxdude.cabin.repository.AssetRepository
-import com.blacklinuxdude.cabin.repository.EmployeeRepository;
+import com.blacklinuxdude.cabin.repository.EmployeeRepository
+import org.joda.time.DateTime
+import org.joda.time.DateTimeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -64,6 +67,14 @@ public class Fixtures implements ApplicationListener<ContextRefreshedEvent> {
                 asset: asset, priority: 0, checkinDate: new Date());
 
         entityManager.persist(bid);
+
+        //create existing reservations
+
+        Reservation reservation
+        reservation = new Reservation(employee: employee, asset: asset, date: new Date());
+        entityManager.persist(reservation);
+        reservation = new Reservation(employee: employee, asset: asset, date: new DateTime().withDayOfWeek(DateTimeConstants.MONDAY).toDate());
+        entityManager.persist(reservation);
 
     }
 

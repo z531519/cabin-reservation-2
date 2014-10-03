@@ -3,6 +3,6 @@ angular.module('cabinReservation.assetsModule.controllers', ['cabinReservation.a
     .controller('assetListController', ['$scope', 'assetService',
         function ($scope, assetService) {
             'use strict';
-            $scope.assets = assetService.list.get();
+            $scope.assets = assetService.list.query();
         }
     ]);

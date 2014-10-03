@@ -1,0 +1,13 @@
+
+body {
+    background-color: #245269;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+        background-color: #E5F7E8;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
