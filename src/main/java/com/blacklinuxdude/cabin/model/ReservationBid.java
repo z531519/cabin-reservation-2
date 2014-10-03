@@ -22,9 +22,14 @@ public class ReservationBid {
     @GeneratedValue
     private Long id;
 
-//    @Column(nullable = false)
+    @ManyToOne
+    private Employee employee;
+
     @ManyToOne
     private Asset asset;
+
+    @ManyToOne
+    private Season season;
 
     @Column(nullable = false)
     private int priority;

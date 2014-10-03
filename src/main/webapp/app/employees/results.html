@@ -1,12 +1,41 @@
 <div>
-    <h1>THIS IS EMPLOYEE LIST</h1>
 
-    <table class="table table-striped">
-        <tbody>
-            <tr ng-repeat="e in employees._embedded.employees">
-                <td>{{e.name}}</td>
-            </tr>
-        </tbody>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row panel-title">
+                <div class="col-md-2">Employees</div>
 
-    </table>
+            </div>
+
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered ">
+                <thead>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Hire Date</td>
+                <td>
+                    <button class="col-md-offset-6 btn btn-sm btn-primary"
+                            ng-click="editEmployee()">Add
+                    </button>
+                </td>
+                </thead>
+                <tbody>
+                <tr ng-repeat="e in employees">
+                    <td>{{e.id}}</td>
+                    <td>{{e.name}}</td>
+                    <td>{{e.hired | date : 'yyyy-MM-dd'}}</td>
+                    <td>
+                        <button class="col-md-offset-6 btn btn-sm btn-primary"
+                                ng-click="editEmployee(e)">Edit
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
 </div>

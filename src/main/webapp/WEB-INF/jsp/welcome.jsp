@@ -20,6 +20,7 @@
     <script src="/static/moment/moment.js"></script>
     <script src="/static/fullcalendar/dist/fullcalendar.js"></script>
     <script src="/static/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/static/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
 </head>
 

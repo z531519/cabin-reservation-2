@@ -6,7 +6,8 @@ angular.module('cabinReservation.employeeModule.services', ['ngResource'])
             '$resource',
             function($resource) {
                 return {
-                    list: $resource('employees/:employeeId')
+                    list: $resource('employees/:employeeId'),
+                    save: $resource('employees/:employeeId')
                 }
             }
         ]);

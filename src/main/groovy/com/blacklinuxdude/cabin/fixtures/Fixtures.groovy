@@ -2,7 +2,8 @@ package com.blacklinuxdude.cabin.fixtures;
 
 import com.blacklinuxdude.cabin.model.Asset;
 import com.blacklinuxdude.cabin.model.Employee
-import com.blacklinuxdude.cabin.model.ReservationBid;
+import com.blacklinuxdude.cabin.model.ReservationBid
+import com.blacklinuxdude.cabin.model.Season;
 import com.blacklinuxdude.cabin.repository.AssetRepository
 import com.blacklinuxdude.cabin.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,15 @@ public class Fixtures implements ApplicationListener<ContextRefreshedEvent> {
         employeeRepository.save(employee)
 
         employeeRepository.findAll().each {
-            println it
+            println it.id
         }
 
-        ReservationBid bid = new ReservationBid(asset: asset, priority: 0, checkinDate: new Date());
+        Season season = new Season(id:"2014SUMMMER", phase: Season.Phase.SUMMER, assets:assetRepository.findAll().toList() )
+
+        entityManager.persist(season)
+
+        ReservationBid bid = new ReservationBid(season:season, employee: employee,
+                asset: asset, priority: 0, checkinDate: new Date());
 
         entityManager.persist(bid);
 

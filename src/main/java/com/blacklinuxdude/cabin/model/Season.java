@@ -5,10 +5,9 @@
 
 package com.blacklinuxdude.cabin.model;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +15,7 @@ import java.util.List;
  * @version $Revision: #1 $ submitted $DateTime: 2013/08/29 10:34:55 $ by $Author: clemka $
  * @since 2.3.xxxx
  */
+@Entity
 public class Season {
     @Id
     private String id;
@@ -25,7 +25,7 @@ public class Season {
     @ManyToMany
     private List<Asset> assets;
 
-    private Phase season;
+    private Phase phase;
 
     public String getId() {
         return id;
@@ -43,11 +43,11 @@ public class Season {
         this.assets = assets;
     }
 
-    public Phase getSeason() {
-        return season;
+    public Phase getPhase() {
+        return phase;
     }
 
-    public void setSeason(Phase season) {
-        this.season = season;
+    public void setPhase(Phase phase) {
+        this.phase = phase;
     }
 }

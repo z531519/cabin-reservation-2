@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@Import(RepositoryRestMvcConfiguration.class)
+//@Import(RepositoryRestMvcConfiguration.class)
 public class Application {
 
     private static final Log logger = LogFactory.getLog(Application.class);

@@ -15,7 +15,7 @@ angular.module('cabinReservation.employeeModule', [
 ]);
 
 angular.module('cabinReservation',
-    [   'ui.router',
+    [   'ui.router', 'ui.bootstrap',
         'cabinReservation.assetsModule',
         'cabinReservation.employeeModule'
     ])
