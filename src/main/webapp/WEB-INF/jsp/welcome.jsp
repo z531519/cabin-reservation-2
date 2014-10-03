@@ -39,8 +39,9 @@
     <div class="container">
         <p>
         <ul class="nav nav-pills">
-            <li><a href="#assets">Assets</a></li>
-            <li><a href="#employees">Employees</a></li>
+            <li><a ui-sref="assets">Assets</a></li>
+            <li><a ui-sref="employees">Employees</a></li>
+            <li><a ui-sref="reservations">Reservations</a></li>
 
         </ul>
 

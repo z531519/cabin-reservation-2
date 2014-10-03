@@ -25,12 +25,11 @@
                     <td>{{e.id}}</td>
                     <td>{{e.name}}</td>
                     <td>{{e.hired | date : 'yyyy-MM-dd'}}</td>
-                    <td>
+                    <td style="text-align: center">
                         <button class="btn btn-sm btn-primary"
                                 ng-click="editEmployee(e)">Edit
                         </button>
-                        <a href="#/employees/{{e.id}}/reservations" class="btn btn-sm btn-primary">Reservations</a>
-                        <a ui-sref="employees.reservations" class="btn btn-sm btn-primary">Reservations</a>
+                        <!--<a ui-sref="employees.reservations" class="btn btn-sm btn-primary">Reservations</a>-->
                     </td>
                 </tr>
                 </tbody>

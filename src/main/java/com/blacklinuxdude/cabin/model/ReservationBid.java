@@ -36,11 +36,6 @@ public class ReservationBid {
     @Column(nullable = false)
     private Date checkinDate;
 
-    public boolean isWeekend() {
-        DateTime dateTime = new DateTime(checkinDate);
-        return (DateTimeConstants.FRIDAY == dateTime.getDayOfWeek());
-    }
-
 
     public Long getId() {
         return id;

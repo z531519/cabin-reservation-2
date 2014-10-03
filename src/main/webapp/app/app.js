@@ -71,7 +71,15 @@ angular.module('cabinReservation',
                         controller: 'reservationController'
                     }
                 }
-
+            })
+            .state('reservations', {
+                url: '/reservations',
+                views : {
+                    '' : {
+                        templateUrl: 'app/reservations/results.html',
+                        controller: 'reservationController'
+                    }
+                }
             })
             ;
         }
