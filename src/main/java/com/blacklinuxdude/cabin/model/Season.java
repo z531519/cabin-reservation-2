@@ -22,6 +22,10 @@ public class Season {
 
     enum Phase { SUMMER, WINTER};
 
+    int year;
+
+    boolean openSeason = false;
+
     @ManyToMany
     private List<Asset> assets;
 
@@ -49,5 +53,21 @@ public class Season {
 
     public void setPhase(Phase phase) {
         this.phase = phase;
+    }
+
+    public boolean isOpenSeason() {
+        return openSeason;
+    }
+
+    public void setOpenSeason(boolean openSeason) {
+        this.openSeason = openSeason;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

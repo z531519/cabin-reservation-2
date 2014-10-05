@@ -1,0 +1,38 @@
+
+
+<div ui-view="seasons">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row panel-title">
+                <div class="col-md-2">Bids</div>
+
+            </div>
+
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered ">
+                <thead>
+                <td>ID</td>
+                <td>Employee</td>
+                <td>Asset</td>
+                <td>Checkin Date</td>
+                </thead>
+                <tbody>
+                <tr ng-repeat="bid in bids">
+                    <td>{{bid.id}}</td>
+                    <td>{{bid.employee.name}}</td>
+                    <td>{{bid.asset.id}}</td>
+                    <td>{{bid.checkinDate | date : 'yyyy-MM-dd'}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div ui-view="bids"/>

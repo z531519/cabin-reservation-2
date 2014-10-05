@@ -54,12 +54,13 @@ public class Fixtures implements ApplicationListener<ContextRefreshedEvent> {
         employee = new Employee(id:'kdeleon', name: 'Ken De Leon', hired: new Date());
 
         employeeRepository.save(employee)
+        employeeRepository.save(new Employee(id:'lzurbano', name: 'Linus Zurbano', hired: new Date()))
 
         employeeRepository.findAll().each {
             println it.id
         }
 
-        Season season = new Season(id:"2014SUMMMER", phase: Season.Phase.SUMMER, assets:assetRepository.findAll().toList() )
+        Season season = new Season(id:"2014SUMMMER", phase: Season.Phase.SUMMER, assets:assetRepository.findAll().toList(), openSeason: true )
 
         entityManager.persist(season)
 

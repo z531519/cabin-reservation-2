@@ -68,4 +68,12 @@ public class ReservationBid {
     public void setCheckinDate(Date checkinDate) {
         this.checkinDate = checkinDate;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }

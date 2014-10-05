@@ -4,7 +4,9 @@ import com.blacklinuxdude.cabin.model.Employee
 import com.blacklinuxdude.cabin.model.Reservation
 import com.blacklinuxdude.cabin.model.ReservationBid
 import com.blacklinuxdude.cabin.repository.EmployeeRepository
+import com.blacklinuxdude.cabin.repository.ReservationBidRepository
 import com.blacklinuxdude.cabin.repository.ReservationRepository
+import com.blacklinuxdude.cabin.repository.SeasonRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
@@ -25,6 +27,12 @@ class EmployeeResourceController {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    ReservationBidRepository reservationBidRepository;
+
+    @Autowired
+    SeasonRepository seasonRepository;
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
@@ -56,8 +64,12 @@ class EmployeeResourceController {
 
     @ResponseBody
     @RequestMapping(value = "/{id}/bids", method = RequestMethod.GET)
-    public Iterable<ReservationBid> getEmployeeReservationBids(@PathVariable('id') String id) {
-       return Collections.EMPTY_LIST;
+    public List<ReservationBid> getEmployeeReservationBids(@PathVariable('id') String id) {
+
+        return reservationBidRepository.findByEmployeeAndSeason(
+                employeeRepository.findOne(id),
+                seasonRepository.findByOpenSeason(true)
+        )
     }
 
 

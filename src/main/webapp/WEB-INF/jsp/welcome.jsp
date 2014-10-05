@@ -39,10 +39,11 @@
     <div class="container">
         <p>
         <ul class="nav nav-pills">
-            <li><a ui-sref="assets">Assets</a></li>
-            <li><a ui-sref="employees">Employees</a></li>
-            <li><a ui-sref="reservations">Reservations</a></li>
-
+            <li ng-class="{active: $state.includes('assets')}"><a ui-sref="assets">Assets</a></li>
+            <li ng-class="{active: $state.includes('employees')}"><a ui-sref="employees">Employees</a></li>
+            <li ng-class="{active: $state.includes('reservations')}"><a ui-sref="reservations">Reservations</a></li>
+            <li ng-class="{active: $state.includes('seasons')}"><a ui-sref="seasons">Season Bids</a></li>
+            <li ng-class="{active: $state.includes('employeebids')}"><a ui-sref="employeebids">Employee Bids</a></li>
         </ul>
 
         </p>
@@ -81,6 +82,11 @@
     <script src="<%=request.getContextPath()%>/app/reservations/services.js"></script>
     <script src="<%=request.getContextPath()%>/app/reservations/controllers.js"></script>
 
+    <script src="<%=request.getContextPath()%>/app/seasonbids/seasonbids-services.js"></script>
+    <script src="<%=request.getContextPath()%>/app/seasonbids/seasonbids-controllers.js"></script>
+
+    <script src="<%=request.getContextPath()%>/app/employeebids/employeebids-services.js"></script>
+    <script src="<%=request.getContextPath()%>/app/employeebids/employeebids-controllers.js"></script>
 
 </body>
 

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SeasonRepository extends CrudRepository<Season, String> {
 
+    Season findByOpenSeason(boolean p);
 }

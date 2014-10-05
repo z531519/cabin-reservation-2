@@ -1,13 +1,13 @@
 
 body {
-    background-color: #245269;
+    background-color: #123D53;
 }
 
 @media (min-width: 1200px) {
     .container {
         width: 970px;
         min-height: 480px;
-        background-color: #E5F7E8;
+        background-color: #CBDAD2;
         margin-top: 10px;
         margin-bottom: 10px;
     }

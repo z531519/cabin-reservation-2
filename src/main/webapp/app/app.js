@@ -19,11 +19,23 @@ angular.module('cabinReservation.reservationModule', [
     'cabinReservation.reservationModule.controllers'
 ]);
 
+angular.module('cabinReservation.seasonbidsModule', [
+    'ngResource',
+    'cabinReservation.seasonbidsModule.controllers'
+]);
+
+angular.module('cabinReservation.employeebidsModule', [
+    'ngResource',
+    'cabinReservation.employeebidsModule.controllers'
+]);
+
 angular.module('cabinReservation',
     [   'ui.router', 'ui.bootstrap',
         'cabinReservation.assetsModule',
         'cabinReservation.employeeModule',
-        'cabinReservation.reservationModule'
+        'cabinReservation.reservationModule',
+        'cabinReservation.seasonbidsModule',
+        'cabinReservation.employeebidsModule'
     ])
     .run(
     [          '$rootScope', '$state', '$stateParams',
@@ -81,7 +93,34 @@ angular.module('cabinReservation',
                     }
                 }
             })
-            ;
+            .state('seasons', {
+                url: '/seasons',
+                views : {
+                    '' : {
+                        templateUrl: 'app/seasonbids/results.html',
+                        controller: 'seasonbidsController'
+                    }
+                }
+            })
+            .state('seasons.bids', {
+                url: '/{seasonId}/bids',
+                views : {
+                    'bids' : {
+                        templateUrl: 'app/seasonbids/bids.html',
+                        controller: 'bidsController'
+                    }
+                }
+            })
+            .state('employeebids', {
+                url: '/bids/employees/{employeeId}',
+                views : {
+                    '' : {
+                        templateUrl: 'app/employeebids/bids.html',
+                        controller: 'employeebidsController'
+                    }
+                }
+            })
+        ;
         }
         ]);
 
