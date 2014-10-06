@@ -3,14 +3,13 @@
 
     <div class="form-group col-md-5" >
         <label>Choose Employee:</label>
-        <select ng-model="selectedEmployee" ng-options="employee.name for employee in employees"
-                ng-change="viewBidsByEmployee(selectedEmployee)"
+        <select ng-model="employee" ng-options="employee as employee.name for employee in employees track by employee.id"
+                ng-change="viewBidsByEmployee(employee)"
                 class="form-control col-md-5"></select>
     </div>
 
     <div class="row"></div>
-
-    <div class="panel panel-default" style="margin: 10px" ng-if="selectedEmployee != null">
+    <div class="panel panel-default" style="margin: 10px" ng-if="employee != null">
         <div class="panel-heading">
             <div class="row panel-title">
                 <div class="col-md-2">Bids</div>
@@ -27,12 +26,12 @@
                 <td>Checkin Date</td>
                 <td style="text-align: center">
                     <button class="btn btn-sm btn-primary"
-                            ng-click="editEmployee()">Add
+                            ng-click="newEmployeeBid()">Add
                     </button>
                 </td>
                 </thead>
-                <tbody>
-                <tr ng-repeat="bid in bids">
+                <tbody ui-sortable ng-model="bids">
+                <tr ng-repeat="bid in bids" style="cursor: move;">
                     <td>{{bid.id}}</td>
                     <td>{{bid.employee.name}}</td>
                     <td>{{bid.asset.id}}</td>

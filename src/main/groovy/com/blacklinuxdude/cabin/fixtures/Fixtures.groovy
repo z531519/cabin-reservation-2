@@ -74,7 +74,8 @@ public class Fixtures implements ApplicationListener<ContextRefreshedEvent> {
         Reservation reservation
         reservation = new Reservation(employee: employee, asset: asset, date: new Date());
         entityManager.persist(reservation);
-        reservation = new Reservation(employee: employee, asset: asset, date: new DateTime().withDayOfWeek(DateTimeConstants.MONDAY).toDate());
+        reservation = new Reservation(employee: employee, asset: asset, date: new DateTime().plusDays(12)
+                .withDayOfWeek(DateTimeConstants.FRIDAY).toDate());
         entityManager.persist(reservation);
 
     }

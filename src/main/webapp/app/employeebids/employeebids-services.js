@@ -6,7 +6,8 @@ angular.module('cabinReservation.employeebidsModule.services', ['ngResource'])
             '$resource',
             function($resource) {
                 return {
-                    bids: $resource('employees/:employeeId/bids')
+                    bids: $resource('employees/:employeeId/bids'),
+                    save: $resource('employees/:employeeId/bids')
                 }
             }
         ]);

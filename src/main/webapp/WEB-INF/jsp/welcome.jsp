@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/static/custom.css" />
     <!-- bower:js -->
     <script src="/static/jquery/dist/jquery.js"></script>
+    <script src="/static/jquery-ui/jquery-ui.js"></script>
     <script src="/static/angular/angular.js"></script>
     <script src="/static/angular-cookies/angular-cookies.js"></script>
     <script src="/static/angular-resource/angular-resource.js"></script>
@@ -23,6 +24,12 @@
     <script src="/static/fullcalendar/dist/fullcalendar.js"></script>
     <script src="/static/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/static/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/static/underscore/underscore.js"></script>
+    <script src="/static/angular-underscore/angular-underscore.js"></script>
+    <script src="/static/hammerjs/hammer.js"></script>
+    <script src="/static/angular-hammer/angular-hammer.js"></script>
+    <script src="/static/ngRepeatReorder/dist/ngRepeatReorder.js"></script>
+    <script src="/static/angular-ui-sortable/sortable.js"></script>
     <!-- endbower -->
 </head>
 

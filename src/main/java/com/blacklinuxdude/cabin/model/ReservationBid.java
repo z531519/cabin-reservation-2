@@ -76,4 +76,12 @@ public class ReservationBid {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
 }

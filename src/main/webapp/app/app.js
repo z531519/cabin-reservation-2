@@ -25,12 +25,12 @@ angular.module('cabinReservation.seasonbidsModule', [
 ]);
 
 angular.module('cabinReservation.employeebidsModule', [
-    'ngResource',
+    'ngResource', 'ngRepeatReorder',
     'cabinReservation.employeebidsModule.controllers'
 ]);
 
 angular.module('cabinReservation',
-    [   'ui.router', 'ui.bootstrap',
+    [   'ui.sortable', 'ui.router', 'ui.bootstrap', 'angular-underscore',
         'cabinReservation.assetsModule',
         'cabinReservation.employeeModule',
         'cabinReservation.reservationModule',
