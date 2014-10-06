@@ -112,11 +112,21 @@ angular.module('cabinReservation',
                 }
             })
             .state('employeebids', {
-                url: '/bids/employees/{employeeId}',
+                url: '/bids/employees',
                 views : {
                     '' : {
                         templateUrl: 'app/employeebids/bids.html',
                         controller: 'employeebidsController'
+                    }
+                }
+            })
+            .state('employeebids.list', {
+                url: '/{employeeId}',
+                views : {
+
+                    'bids' : {
+                        templateUrl: 'app/employeebids/bids.html',
+                        controller: 'employeebidsListController'
                     }
                 }
             })

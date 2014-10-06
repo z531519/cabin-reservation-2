@@ -1,0 +1,9 @@
+
+    <div class="form-group col-md-5" >
+        <label>Choose Employee:</label>
+        <select ng-model="selectedEmployee" ng-options="employee.name for employee in employees"
+                ng-change="viewBidsByEmployee(selectedEmployee)"
+                class="form-control col-md-5"></select>
+    </div>
+
+

@@ -1,14 +1,4 @@
 
-<div ui-view="bids">
-
-    <div class="form-group col-md-5" >
-        <label>Choose Employee:</label>
-        <select ng-model="selectedEmployee" ng-options="employee.name for employee in employees"
-                ng-change="viewBidsByEmployee(selectedEmployee)"
-                class="form-control col-md-5"></select>
-    </div>
-
-    <div class="row"></div>
 
     <div class="panel panel-default" style="margin: 10px" ng-if="selectedEmployee != null">
         <div class="panel-heading">
@@ -46,8 +36,4 @@
             </table>
         </div>
     </div>
-
-
-</div>
-
 
