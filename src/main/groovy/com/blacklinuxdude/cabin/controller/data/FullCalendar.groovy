@@ -1,6 +1,7 @@
 package com.blacklinuxdude.cabin.controller.data
 
 import com.blacklinuxdude.cabin.model.Reservation
+import com.blacklinuxdude.cabin.model.ReservationBid
 import com.blacklinuxdude.cabin.service.VacationDateHelper
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
@@ -27,5 +28,15 @@ class FullCalendar {
         def end = fmt.print(VacationDateHelper.getTo(dateTime))
         new FullCalendar(id : reservation.id, title: reservation.employee.name, allDay: true,
             start:start, end:end)
+    }
+
+    public static FullCalendar create(ReservationBid reservation) {
+        Date date = reservation.checkinDate
+        DateTime dateTime = new DateTime(date)
+        DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+        def start = fmt.print(VacationDateHelper.getFrom(dateTime))
+        def end = fmt.print(VacationDateHelper.getTo(dateTime))
+        new FullCalendar(id : reservation.id, title: reservation.employee.name, allDay: true,
+                start:start, end:end)
     }
 }

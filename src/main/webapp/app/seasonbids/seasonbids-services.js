@@ -7,7 +7,8 @@ angular.module('cabinReservation.seasonbidsModule.services', ['ngResource'])
             function($resource) {
                 return {
                     list: $resource('seasons'),
-                    bids: $resource('seasons/:seasonId/bids')
+                    bids: $resource('seasons/:seasonId/bids'),
+                    evaluateBids: $resource('seasons/:seasonId/bids/evaluate')
                 }
             }
         ]);

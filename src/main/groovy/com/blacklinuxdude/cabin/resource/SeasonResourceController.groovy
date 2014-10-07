@@ -7,6 +7,7 @@ import com.blacklinuxdude.cabin.model.Season
 import com.blacklinuxdude.cabin.repository.ReservationBidRepository
 import com.blacklinuxdude.cabin.repository.ReservationRepository
 import com.blacklinuxdude.cabin.repository.SeasonRepository
+import com.blacklinuxdude.cabin.service.BiddingService
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
@@ -25,6 +26,9 @@ class SeasonResourceController {
 
     @Autowired
     ReservationBidRepository reservationBidRepository;
+
+    @Autowired
+    BiddingService biddingService
 
 
     @ResponseBody
@@ -45,11 +49,31 @@ class SeasonResourceController {
     @RequestMapping(value="/{seasonId}/bids", method = RequestMethod.GET)
     public List<ReservationBid> getReservationBids(@PathVariable('seasonId') String seasonId) {
 
-        return reservationBidRepository.findBySeason(seasonRepository.findOne(seasonId))
+        return reservationBidRepository.findBySeasonOrderByEmployeeHiredAsc(seasonRepository.findOne(seasonId))
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/{seasonId}/bids/fullcalendar", method = RequestMethod.GET)
+    public Iterable<FullCalendar> getFullCalendarByMonth( @PathVariable('seasonId') String seasonId,
+            @RequestParam("start") String start, @RequestParam("end") String end) {
+        DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+
+        DateTime from = fmt.parseDateTime(start)
+        DateTime to = fmt.parseDateTime(end)
+
+        def reservations = reservationBidRepository
+                .findBySeasonAndCheckinDateBetween(seasonRepository.findOne(seasonId), from.toDate(), to.toDate())
+        return reservations.collect { ReservationBid r ->
+            FullCalendar.create(r)
+        }
     }
 
 
-
+    @ResponseBody
+    @RequestMapping(value="/{seasonId}/bids/evaluate", method = RequestMethod.POST)
+    public Iterable<FullCalendar> evaluateBids(@PathVariable('seasonId') String seasonId) {
+        biddingService.evaluateBids()
+    }
 
 
 }

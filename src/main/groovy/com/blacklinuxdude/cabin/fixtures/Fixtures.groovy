@@ -54,8 +54,12 @@ public class Fixtures implements ApplicationListener<ContextRefreshedEvent> {
         employee = new Employee(id:'kdeleon', name: 'Ken De Leon', hired: new Date());
 
         employeeRepository.save(employee)
-        employeeRepository.save(new Employee(id:'lzurbano', name: 'Linus Zurbano', hired: new Date()))
-
+        employeeRepository.save(new Employee(id:'lzurbano', name: 'Linus Zurbano',
+                hired: DateTime.now().minusDays(100).toDate()))
+        employeeRepository.save(new Employee(id:'ayrton', name: 'Ayrton De Leon',
+                hired: DateTime.now().minusDays(50).toDate()))
+        employeeRepository.save(new Employee(id:'kimi', name: 'Kimi De Leon',
+                hired: DateTime.now().minusDays(25).toDate()))
         employeeRepository.findAll().each {
             println it.id
         }
@@ -64,10 +68,18 @@ public class Fixtures implements ApplicationListener<ContextRefreshedEvent> {
 
         entityManager.persist(season)
 
-        ReservationBid bid = new ReservationBid(season:season, employee: employee,
-                asset: asset, priority: 0, checkinDate: new Date());
-
+        ReservationBid bid;
+        bid = new ReservationBid(season:season, employee: employee,
+                asset: assetRepository.findOne('CAB01'), priority: 0, checkinDate: new Date());
         entityManager.persist(bid);
+        entityManager.persist(new ReservationBid(season:season, employee: employee,
+                asset: assetRepository.findOne('CONDO01'), priority: 1, checkinDate: new Date()));
+        entityManager.persist(new ReservationBid(season:season, employee: employeeRepository.findOne('lzurbano'),
+                asset: assetRepository.findOne('CONDO01'), priority: 0, checkinDate: new Date()));
+        entityManager.persist(new ReservationBid(season:season, employee: employeeRepository.findOne('ayrton'),
+                asset: assetRepository.findOne('CONDO01'), priority: 0, checkinDate: new Date()));
+        entityManager.persist(new ReservationBid(season:season, employee: employeeRepository.findOne('kimi'),
+                asset: assetRepository.findOne('CAB01'), priority: 0, checkinDate: new Date()));
 
         //create existing reservations
 

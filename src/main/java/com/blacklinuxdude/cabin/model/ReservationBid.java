@@ -17,24 +17,30 @@ import java.util.Date;
  * @since 2.3.xxxx
  */
 @Entity
+@Table(indexes = {@Index(unique = true, name="IDX_BID", columnList = "employee, asset, season, checkinDate")})
 public class ReservationBid {
     @Id
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Asset asset;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Season season;
 
     @Column(nullable = false)
     private int priority;
+
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date checkinDate;
+
+    @Column(nullable = false)
+    private boolean won = false;
 
 
     public Long getId() {
@@ -83,5 +89,13 @@ public class ReservationBid {
 
     public void setSeason(Season season) {
         this.season = season;
+    }
+
+    public boolean isWon() {
+        return won;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
     }
 }

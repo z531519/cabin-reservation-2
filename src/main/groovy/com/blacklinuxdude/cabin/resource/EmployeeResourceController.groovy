@@ -7,6 +7,8 @@ import com.blacklinuxdude.cabin.repository.EmployeeRepository
 import com.blacklinuxdude.cabin.repository.ReservationBidRepository
 import com.blacklinuxdude.cabin.repository.ReservationRepository
 import com.blacklinuxdude.cabin.repository.SeasonRepository
+import com.blacklinuxdude.cabin.resource.command.ReservationBidOrderCommand
+import com.blacklinuxdude.cabin.service.BiddingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.PathVariable
@@ -36,10 +38,13 @@ class EmployeeResourceController {
     @Autowired
     SeasonRepository seasonRepository;
 
+    @Autowired
+    BiddingService biddingService;
+
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
     public List<Employee> getEmployees() {
-        return employeeRepository.findAll()
+        return employeeRepository.findByOrderByHiredAsc()
     }
 
     @ResponseBody
@@ -68,7 +73,7 @@ class EmployeeResourceController {
     @RequestMapping(value = "/{id}/bids", method = RequestMethod.GET)
     public List<ReservationBid> getEmployeeReservationBids(@PathVariable('id') String id) {
 
-        return reservationBidRepository.findByEmployeeAndSeason(
+        return reservationBidRepository.findByEmployeeAndSeasonOrderByPriorityAsc(
                 employeeRepository.findOne(id),
                 seasonRepository.findByOpenSeason(true)
         )
@@ -78,9 +83,26 @@ class EmployeeResourceController {
     @ResponseBody
     @RequestMapping(value = "/{id}/bids", method = RequestMethod.POST)
     public ReservationBid saveEmployeeBid(@PathVariable('id') String id, @RequestBody ReservationBid reservationBid) {
-        reservationBid.setSeason(seasonRepository.findByOpenSeason(true));
-        reservationBid = reservationRepository.save(reservationBid)
+
+        reservationBid = biddingService.createBid(reservationBid.employee, reservationBid.asset, reservationBid.checkinDate)
+
         return reservationBid;
+    }
+
+
+    @RequestMapping(value = "/{id}/bids/reorder", method = RequestMethod.POST)
+    public void reorderBids(@PathVariable('id') String id, @RequestBody ReservationBidOrderCommand reorderCommand) {
+        def reorderedBids = []
+        for (def order : reorderCommand.order) {
+            def bid = reservationBidRepository.findOne(Long.valueOf(order.id))
+            reorderedBids += bid
+        }
+        biddingService.reorderBids(reorderedBids)
+    }
+
+    @RequestMapping(value = "/{employeeId}/bids/{bidId}", method = RequestMethod.DELETE)
+    public void removeBid(@PathVariable('employeeId') String  employeeId, @PathVariable('bidId') Long bidId) {
+        reservationBidRepository.delete(bidId)
     }
 
 

@@ -21,10 +21,22 @@ angular.module('cabinReservation.seasonbidsModule.controllers',
         function( $scope,   $stateParams,   seasonbidsService) {
             'use strict';
             $scope.params = $stateParams;
-//            $scope.selectedSeason = $scope.$parent.selectedSeason;
+            $scope.seasonId = $stateParams.seasonId;
 
             $scope.bids = seasonbidsService.bids.query({seasonId: $scope.params.seasonId});
 
+            $scope.evaluateBids = function() {
+                console.log({seasonId:$scope.params.seasonId});
+
+                (new seasonbidsService.evaluateBids()).$save({seasonId:$scope.params.seasonId}
+                , function() {
+                    $scope.bids = seasonbidsService.bids.query({seasonId: $scope.params.seasonId});
+                });
+            };
+
+            $scope.revokeBid = function(bid) {
+                bid.$save();
+            }
 
         }
     ])

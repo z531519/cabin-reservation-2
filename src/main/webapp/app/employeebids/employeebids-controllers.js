@@ -20,7 +20,30 @@ angular.module('cabinReservation.employeebidsModule.controllers',
                 ['$scope', '$state',  '$stateParams', '$modal', 'employeebidsService', 'employeeService',
         function ($scope,    $state,   $stateParams,   $modal,   employeebidsService,   employeeService) {
             'use strict';
-            $scope.bids = employeebidsService.bids.query({employeeId:$stateParams.employeeId});
+
+            $scope.dirtyOrder = false;
+
+            function reorder() {
+                var p = 0;
+                $scope.dirtyOrder = false;
+                angular.forEach($scope.bids, function(el){
+                    if (el.priority !== p) {
+                        $scope.dirtyOrder = true;
+                    }
+                    el.repriority = p++;
+                });
+            }
+
+            function retrieveBids() {
+                $scope.bids = employeebidsService.bids.query({employeeId:$stateParams.employeeId}, function() {
+                    reorder();
+
+                });
+            }
+
+            retrieveBids(); // initialize the bids
+
+
             if ($scope.employee == null) {
                 $scope.employees = employeeService.list.query( function() {
                     $scope.employee = _.find($scope.employees, function (el) {
@@ -29,6 +52,7 @@ angular.module('cabinReservation.employeebidsModule.controllers',
                     $scope.$parent.employee = $scope.employee;
                 });
             }
+
             $scope.openBidEditor = function($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
@@ -48,8 +72,34 @@ angular.module('cabinReservation.employeebidsModule.controllers',
                     }
                 });
                 modalInstance.result.then(function (selectedItem) {
-                    $scope.bids = employeebidsService.bids.query({employeeId:$stateParams.employeeId});
+                    retrieveBids();
                 });
+            };
+
+            $scope.deleteEmployeeBid = function(bid) {
+                bid.$delete({employeeId:bid.employee.id, id:bid.id}, function() {
+                    retrieveBids();
+                });
+            }
+
+            $scope.applyReorder = function() {
+                var reorder = new employeebidsService.reorder()
+                reorder.order = [];
+                angular.forEach($scope.bids, function(el) {
+                   reorder.order.push( {id:el.id, priority: el.repriority});
+                });
+                reorder.$save({employeeId: $scope.employee.id}, function() {
+                    $scope.dirtyOrder = false;
+                    retrieveBids();
+                });
+            };
+
+            $scope.sortOptions = {
+                stop: function(e, ui) {
+                    console.log(e);
+                    console.log(ui);
+                    reorder();
+                }
             }
 
         }

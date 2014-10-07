@@ -24,20 +24,30 @@
                 <td>Employee</td>
                 <td>Asset</td>
                 <td>Checkin Date</td>
+                <td>Priority</td>
                 <td style="text-align: center">
                     <button class="btn btn-sm btn-primary"
                             ng-click="newEmployeeBid()">Add
                     </button>
+                    <button class="btn btn-sm btn-primary"
+                            ng-if="dirtyOrder"
+                            ng-click="applyReorder()">Apply
+                    </button>
+
                 </td>
                 </thead>
-                <tbody ui-sortable ng-model="bids">
-                <tr ng-repeat="bid in bids" style="cursor: move;">
+                <tbody ui-sortable="sortOptions" ng-model="bids">
+                <tr ng-repeat="bid in bids track by bid.id" style="cursor: move;"
+                        ng-class="{success: bid.won}">
                     <td>{{bid.id}}</td>
                     <td>{{bid.employee.name}}</td>
                     <td>{{bid.asset.id}}</td>
                     <td>{{bid.checkinDate | date : 'yyyy-MM-dd'}}</td>
+                    <td>{{bid.repriority}}</td>
                     <td style="text-align: center">
-                        <button class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span>Delete</button>
+                        <button class="btn btn-sm btn-danger" ng-click="deleteEmployeeBid(bid)">
+                            <span class="glyphicon glyphicon-remove"></span>Delete
+                        </button>
                     </td>
                 </tr>
                 </tbody>
