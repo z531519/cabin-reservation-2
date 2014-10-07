@@ -79,7 +79,8 @@ class BiddingServiceImpl implements BiddingService {
             }
             if (!hasWon) {
                 for (ReservationBid bid : bids) {
-                    ReservationBid won = reservationBidRepository.findByAssetAndSeasonAndWon(bid.asset, season, true)
+                    ReservationBid won = reservationBidRepository
+                            .findByAssetAndSeasonAndCheckinDateAndWon(bid.asset, season, bid.checkinDate, true)
                     if (!won) {
                         bid.won = true
                         reservationBidRepository.save(bid)

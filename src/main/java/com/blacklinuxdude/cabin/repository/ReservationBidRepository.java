@@ -23,5 +23,5 @@ public interface ReservationBidRepository extends CrudRepository<ReservationBid,
 
     List<ReservationBid> findBySeasonAndCheckinDateBetween(Season season, Date from, Date to);
 
-    ReservationBid findByAssetAndSeasonAndWon(Asset asset, Season season, boolean won);
+    ReservationBid findByAssetAndSeasonAndCheckinDateAndWon(Asset asset, Season season, Date checkinDate, boolean won);
 }
