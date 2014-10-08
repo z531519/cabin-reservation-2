@@ -2,6 +2,7 @@
 
 <div>
     <input type="text" id="seasonId" style="display: none" value="{{seasonId}}"/>
+
     <tabset ng-init="tabs = [{title:'ABC'}]">
         <tab heading="List">
             <div class="panel panel-default">
@@ -40,25 +41,49 @@
         </tab>
         <tab heading="Calendar">
 
-
+            <label>Toggle Won</label><input type="checkbox" id="wonToggle"/>
             <div id="calendar"></div>
             <script>
                 $(function() {
                     var seasonId = $('#seasonId').val();
-                    console.log(seasonId);
+
+                    $('#wonToggle').change(function() {
+                        $('#calendar').fullCalendar('refetchEvents');
+                    });
+
+//                    $('#calendar').fullCalendar({
+//                        eventSources: [
+//
+//                            {
+//                                url: '/seasons/' + seasonId + '/bids/fullcalendar',
+//                                type: 'GET',
+//                                data: {
+//                                    won: $('#wonToggle').prop('checked')
+//                                }
+//                            }
+//
+//                        ]
+//
+//                    });
+
+
                     $('#calendar').fullCalendar({
-                        eventSources: [
+                        events: function(start, end, timezone, callback) {
 
-                            // your event source
-                            {
+                            $.ajax({
                                 url: '/seasons/' + seasonId + '/bids/fullcalendar',
-                            }
-
-                            // any other sources...
-
-                        ]
-
-                    })
+                                dataType: 'json',
+                                data: {
+                                    start: start.format(),
+                                    end: end.format(),
+                                    won: $('#wonToggle').prop('checked')
+                                },
+                                success: function(doc) {
+                                    callback(doc);
+                                }
+                            });
+                        }
+                    });
                 });
             </script>
 

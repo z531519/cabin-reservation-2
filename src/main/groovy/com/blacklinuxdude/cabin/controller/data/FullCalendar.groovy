@@ -19,6 +19,8 @@ class FullCalendar {
     String start
     String end
     String url
+    String className
+    def data
 
     public static FullCalendar create(Reservation reservation) {
         Date date = reservation.date
@@ -26,8 +28,11 @@ class FullCalendar {
         DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
         def start = fmt.print(VacationDateHelper.getFrom(dateTime))
         def end = fmt.print(VacationDateHelper.getTo(dateTime))
-        new FullCalendar(id : reservation.id, title: reservation.employee.name, allDay: true,
-            start:start, end:end)
+        new FullCalendar(id : reservation.id, title: reservation.employee.name + ' : ' + reservation.asset.name,
+                allDay: true,
+                className: reservation.asset.id,
+                start:start, end:end,
+                data: reservation)
     }
 
     public static FullCalendar create(ReservationBid reservation) {
@@ -36,7 +41,11 @@ class FullCalendar {
         DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
         def start = fmt.print(VacationDateHelper.getFrom(dateTime))
         def end = fmt.print(VacationDateHelper.getTo(dateTime))
-        new FullCalendar(id : reservation.id, title: reservation.employee.name, allDay: true,
-                start:start, end:end)
+
+        new FullCalendar(id : reservation.id, title: reservation.employee.name + ' : ' + reservation.asset.name,
+                allDay: true,
+                className: reservation.asset.id + ' ' + (reservation.won ? 'bid-won':'bid'),
+                start:start, end:end,
+                data: reservation)
     }
 }

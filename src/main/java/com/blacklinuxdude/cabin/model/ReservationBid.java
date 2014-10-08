@@ -5,6 +5,7 @@
 
 package com.blacklinuxdude.cabin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 
@@ -35,6 +36,7 @@ public class ReservationBid {
     @Column(nullable = false)
     private int priority;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone = "CST")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date checkinDate;

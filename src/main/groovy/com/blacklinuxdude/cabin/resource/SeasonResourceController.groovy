@@ -39,30 +39,35 @@ class SeasonResourceController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/open", method = RequestMethod.GET)
+    @RequestMapping(value = "/open", method = RequestMethod.GET)
     public Season getOpenSeason() {
 
         return seasonRepository.findByOpenSeason(true);
     }
 
     @ResponseBody
-    @RequestMapping(value="/{seasonId}/bids", method = RequestMethod.GET)
+    @RequestMapping(value = "/{seasonId}/bids", method = RequestMethod.GET)
     public List<ReservationBid> getReservationBids(@PathVariable('seasonId') String seasonId) {
 
         return reservationBidRepository.findBySeasonOrderByEmployeeHiredAsc(seasonRepository.findOne(seasonId))
     }
 
     @ResponseBody
-    @RequestMapping(value="/{seasonId}/bids/fullcalendar", method = RequestMethod.GET)
-    public Iterable<FullCalendar> getFullCalendarByMonth( @PathVariable('seasonId') String seasonId,
-            @RequestParam("start") String start, @RequestParam("end") String end) {
+    @RequestMapping(value = "/{seasonId}/bids/fullcalendar", method = RequestMethod.GET)
+    public Iterable<FullCalendar> getFullCalendarByMonth(@PathVariable('seasonId') String seasonId,
+                                                         @RequestParam("start") String start,
+                                                         @RequestParam("end") String end,
+                                                         @RequestParam(value = "won", defaultValue = "false") boolean won) {
         DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
 
         DateTime from = fmt.parseDateTime(start)
         DateTime to = fmt.parseDateTime(end)
 
-        def reservations = reservationBidRepository
-                .findBySeasonAndCheckinDateBetween(seasonRepository.findOne(seasonId), from.toDate(), to.toDate())
+        def reservations = won ?
+                reservationBidRepository
+                        .findBySeasonAndCheckinDateBetweenAndWon(seasonRepository.findOne(seasonId), from.toDate(), to.toDate(), true) :
+                reservationBidRepository
+                        .findBySeasonAndCheckinDateBetween(seasonRepository.findOne(seasonId), from.toDate(), to.toDate())
         return reservations.collect { ReservationBid r ->
             FullCalendar.create(r)
         }
@@ -70,7 +75,7 @@ class SeasonResourceController {
 
 
     @ResponseBody
-    @RequestMapping(value="/{seasonId}/bids/evaluate", method = RequestMethod.POST)
+    @RequestMapping(value = "/{seasonId}/bids/evaluate", method = RequestMethod.POST)
     public Iterable<FullCalendar> evaluateBids(@PathVariable('seasonId') String seasonId) {
         biddingService.evaluateBids()
     }

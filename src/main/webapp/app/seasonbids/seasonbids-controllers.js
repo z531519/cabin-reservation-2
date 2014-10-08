@@ -35,7 +35,8 @@ angular.module('cabinReservation.seasonbidsModule.controllers',
             };
 
             $scope.revokeBid = function(bid) {
-                bid.$save();
+                seasonbidsService.revokeBid(bid);
+//                bid.$save({seasonId:$stateParams.seasonId});
             }
 
         }
