@@ -1,17 +1,4 @@
 
-body {
-    background-color: #123D53;
-}
-
-@media (min-width: 1200px) {
-    .container {
-        width: 970px;
-        min-height: 480px;
-        background-color: #CBDAD2;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-}
 
 #calendar {
     background-color: #ffffff;

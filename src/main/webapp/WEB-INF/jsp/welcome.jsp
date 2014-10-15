@@ -5,12 +5,24 @@
 
 <html lang="en" ng-app="cabinReservation">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- bower:css -->
+
     <link rel="stylesheet" href="/static/fullcalendar/dist/fullcalendar.css" />
-    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
+    <link rel="stylesheet" href="/static/custom/boottheme/bootstrap.min.css" />
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+    </style>
+    <link href="/static/custom/boottheme/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <link href="/static/custom/boottheme/main.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/static/custom.css" />
     <!-- bower:js -->
     <script src="/static/jquery/dist/jquery.js"></script>
@@ -22,7 +34,7 @@
     <script src="/static/angular-hateoas/src/angular-hateoas.js"></script>
     <script src="/static/moment/moment.js"></script>
     <script src="/static/fullcalendar/dist/fullcalendar.js"></script>
-    <script src="/static/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/static/custom/boottheme/bootstrap.min.js"></script>
     <script src="/static/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/static/underscore/underscore.js"></script>
     <script src="/static/angular-underscore/angular-underscore.js"></script>
@@ -31,52 +43,57 @@
     <script src="/static/ngRepeatReorder/dist/ngRepeatReorder.js"></script>
     <script src="/static/angular-ui-sortable/sortable.js"></script>
     <!-- endbower -->
+
+
 </head>
 
 
 <body>
-    <%--<c:url value="/resources/text.txt" var="url"/>--%>
-    <%--<spring:url value="/resources/text.txt" htmlEscape="true" var="springUrl"/>--%>
-    <%--Spring URL: ${springUrl} at ${time}--%>
-    <%--<br>--%>
-    <%--JSTL URL: ${url}--%>
-    <%--<br>--%>
-    <%--Message: ${message}--%>
 
-    <div class="container">
-        <p>
-        <ul class="nav nav-pills">
-            <li ng-class="{active: $state.includes('assets')}"><a ui-sref="assets">Assets</a></li>
-            <li ng-class="{active: $state.includes('employees')}"><a ui-sref="employees">Employees</a></li>
-            <li ng-class="{active: $state.includes('reservations')}"><a ui-sref="reservations">Reservations</a></li>
-            <li ng-class="{active: $state.includes('seasons')}"><a ui-sref="seasons">Season Bids</a></li>
-            <li ng-class="{active: $state.includes('employeebids')}"><a ui-sref="employeebids">Employee Bids</a></li>
-        </ul>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
 
-        </p>
-
-       <div data-ui-view>
-
-
-
+                </a>
+                <a class="brand" href="#">Cabin Reservation</a>
+                <div class="nav-collapse collapse" style="height: 0px;">
+                    <p class="navbar-text pull-right">Logged in as
+                        <a href="#" class="navbar-link">Username</a>
+                    </p>
+                    <ul class="nav">
+                        <li ng-class="{active: $state.includes('assets')}"><a ui-sref="assets">Assets</a></li>
+                        <li ng-class="{active: $state.includes('employees')}"><a ui-sref="employees">Employees</a></li>
+                        <li ng-class="{active: $state.includes('reservations')}"><a ui-sref="reservations">Reservations</a></li>
+                        <li ng-class="{active: $state.includes('seasons')}"><a ui-sref="seasons">Season Bids</a></li>
+                        <li ng-class="{active: $state.includes('employeebids')}"><a ui-sref="employeebids">Employee Bids</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
         </div>
-
-        <div data-ui-view="reservations"></div>
-
-
-
-
-
     </div>
 
-                   <pre>
-      <!-- Here's some values to keep an eye on in the sample in order to understand $state and $stateParams -->
-      $state = {{$state.current.name}}
-      $stateParams = {{$stateParams}}
-      $state full url = {{ $state.$current.url.source }}
-      <!-- $state.$current is not a public api, we are using it to
-           display the full url for learning purposes-->
-    </pre>
+
+    <div class="container-fluid">
+
+       <div class="row-fluid" data-ui-view>
+        </div>
+        <div class="row-fluid" data-ui-view="reservations"></div>
+        <footer>
+            <p>© Company 2013</p>
+        </footer>
+    </div>
+
+   <%--<pre>--%>
+      <%----%>
+      <%--$state = {{$state.current.name}}--%>
+      <%--$stateParams = {{$stateParams}}--%>
+      <%--$state full url = {{ $state.$current.url.source }}--%>
+      <%----%>
+    <%--</pre>--%>
 
 
     <script src="<%=request.getContextPath()%>/app/app.js"></script>
@@ -94,6 +111,8 @@
 
     <script src="<%=request.getContextPath()%>/app/employeebids/employeebids-services.js"></script>
     <script src="<%=request.getContextPath()%>/app/employeebids/employeebids-controllers.js"></script>
+
+    <script src='/static/custom/boottheme/main.js'></script>
 
 </body>
 
