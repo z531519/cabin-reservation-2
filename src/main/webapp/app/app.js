@@ -130,6 +130,15 @@ angular.module('cabinReservation',
                     }
                 }
             })
+            .state('functionqdemo', {
+                url: '/functionqdemo',
+                views: {
+
+                    '': {
+                        templateUrl: 'app/functionqdemo/functionqdemo.html'
+                    }
+                }
+            })
         ;
         }
         ]);

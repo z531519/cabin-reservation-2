@@ -1,0 +1,48 @@
+<H1>ABC</H1>
+<div class="scriptload">
+
+    <div class="row">
+
+        <div class="span6 queue">
+            <h3>Queue #1</h3>
+            <p> </p>
+            <p class="buttons">
+                <button class="btn q1" data-delay="1">Add 1 Sec Request</button>
+                <button class="btn q1" data-delay="3">3 Sec</button>
+                <button class="btn q1" data-delay="8">8 Sec</button>
+                <button class="btn btn-danger q1" data-delay="1">Error</button>
+                <button class="btn q1 clear">Clear</button>
+                <button class="btn q1 abort">Abort</button>
+            </p>
+
+            <div class="queue-container" id="q1-container">
+
+                <div class="node beforesend complete"><strong>#1</strong><b>✓</b>1 second delay<i>1 seconds</i></div><div class="node beforesend complete"><strong>#2</strong><b>✓</b>1 second delay<i>1 seconds</i></div></div>
+        </div>
+        <div class="span6 queue">
+            <h3>Queue #2</h3>
+            <p></p>
+            <p class="buttons">
+                <button class="btn q2" data-delay="1">Add 1 Sec Request</button>
+                <button class="btn q2" data-delay="3">3 Sec</button>
+                <button class="btn q2" data-delay="8">8 Sec</button>
+                <button class="btn btn-danger q2" data-delay="1">Error</button>
+                <button class="btn q2 clear">Clear</button>
+                <button class="btn q2 abort">Abort</button>
+            </p>
+            <div class="queue-container" id="q2-container">
+
+                <div class="node beforesend complete"><strong>#1</strong><b>✓</b>3 second delay<i>3 seconds</i></div></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="span12">
+            <button class="btn" id="isQueueRunning">Are Any Requests Running?</button>
+            <strong id="isQueueRunningLabel"></strong>
+        </div>
+    </div>
+</div>
+
+<script src="/static/ajaxq/demo.js"></script>

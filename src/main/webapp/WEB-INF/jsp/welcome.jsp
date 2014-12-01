@@ -15,6 +15,9 @@
     <!-- bower:js -->
     <script src="/static/jquery/dist/jquery.js"></script>
     <script src="/static/jquery-ui/jquery-ui.js"></script>
+
+    <script src="/static/ajaxq/functionq.js"></script>
+
     <script src="/static/angular/angular.js"></script>
     <script src="/static/angular-cookies/angular-cookies.js"></script>
     <script src="/static/angular-resource/angular-resource.js"></script>
@@ -31,6 +34,7 @@
     <script src="/static/ngRepeatReorder/dist/ngRepeatReorder.js"></script>
     <script src="/static/angular-ui-sortable/sortable.js"></script>
     <!-- endbower -->
+
 </head>
 
 
@@ -51,6 +55,7 @@
             <li ng-class="{active: $state.includes('reservations')}"><a ui-sref="reservations">Reservations</a></li>
             <li ng-class="{active: $state.includes('seasons')}"><a ui-sref="seasons">Season Bids</a></li>
             <li ng-class="{active: $state.includes('employeebids')}"><a ui-sref="employeebids">Employee Bids</a></li>
+            <li ng-class="{active: $state.includes('functionqdemo')}"><a ui-sref="functionqdemo">FunctionQ Demo</a></li>
         </ul>
 
         </p>
