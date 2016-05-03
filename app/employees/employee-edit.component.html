@@ -1,0 +1,30 @@
+
+<div *ngIf="employee">
+  <div class="modal-header">
+      <h3 class="modal-title">Employee ID: {{employee.id}}</h3>
+  </div>
+  <div class="modal-body">
+      <input type="text" class="form-control" disabled=disabled [(ngModel)]="employee.id" ng-if="isNewEmployee"/>
+      <input type="text" class="form-control" [(ngModel)]="employee.name"/>
+      <div class="row">
+          <div class="col-md-6">
+              <p class="input-group">
+                  <!-- <input type="text" class="form-control"
+                         [(ngModel)]="hireDate" is-open="opened" datepicker-popup="yyyy-MM-dd"
+                         datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /> -->
+                 Selected date is: <em *ngIf="hireDate">{{ hireDate}}</em>
+                 <input type="date" class="form-control"  [(ngModel)]="hireDate"/>
+                  <!-- <datepicker [(ngModel)]="hireDate" close-text="Close" datepicker-popup="yyyy-MM-dd"></datepicker> -->
+                <!-- <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span> -->
+              </p>
+          </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" (click)="updateEmployee()">OK</button>
+      <button class="btn btn-warning" (click)="goBack()">Cancel</button>
+  </div>
+
+</div>

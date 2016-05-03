@@ -17,3 +17,5 @@ activemq-data/*
 /build
 /bin/*
 /node_modules/*
+/app/**/*.js
+/app/**/*.map

@@ -18,20 +18,10 @@
   ],
   "dependencies": {
     "jquery": "^2.1.1",
-    "angular": "1.2.21",
-    "angular-cookies": "1.2.21",
-    "angular-resource": "1.2.21",
-    "angular-ui-router": "*",
-    "angular-hateoas": "*",
-    "fullcalendar": "*",
-    "bootstrap": "^3.1.1",
-    "angular-bootstrap": "latest",
+    "fullcalendar": "*",    
     "underscore": "~1.7.0",
-    "angular-underscore": "*",
-    "ngRepeatReorder": "~0.1.1",
-    "angular-ui-sortable": "~0.12.11"
-  },
-  "devDependencies": {
-    "angular-mocks": "1.2.21"
+    "jquery-ui": "1.10.3",
+    "blockui": "2.70",
+    "underscore": "*"
   }
 }

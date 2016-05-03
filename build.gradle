@@ -13,6 +13,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.5
 version = '1.0'
